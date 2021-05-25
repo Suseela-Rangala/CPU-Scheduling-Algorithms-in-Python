@@ -1,0 +1,23 @@
+//fcfs
+n = int (input("Enter no.of processess:"))
+p = []
+w = []
+tw = 0
+for i in range(n):
+    p.append(int (input("Enter process:")))
+    w.append(int (input("Enter weight:")))
+    
+d1 = dict(zip(p,w))
+d2 = 0
+weight = 0
+print("Waiting time:")
+for i, j in d1.items():
+    print (i,"=",weight)
+    d2 = d2 + weight
+    weight = weight + j
+   
+print("Average waiting time: ",d2/n)
+
+for i in d1.values():
+     tw = tw + i
+print("Average turn around time: ",(d2+tw)/n)

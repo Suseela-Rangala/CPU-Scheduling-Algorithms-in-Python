@@ -1,0 +1,45 @@
+//priority
+print("**********************No two processess must have same priority**************",end = "\n")
+n = int (input("Enter no.of processess:"))
+p = []
+w = []
+tw = 0
+for i in range(n):
+    print("Process:",i,end="\n")
+    p.append(int (input("Enter priority:")))
+    w.append(int (input("Enter weight:")))
+    
+small = 9999
+d1 = dict(zip(w,p))
+d2 = dict()
+for i in range(n):
+    small = 9999
+    for j in d1.keys():
+        if(d1[j] < small):
+            small = d1[j]
+            t = j
+    d1[t] = 9999
+    d2[t] = small
+
+d1 = d2
+d2 = dict()
+for i , j in d1.items():
+    d2[j] = i
+
+d1 = d2 
+d2 = 0
+print(d1)
+weight = 0
+print("Waiting time:")
+for i, j in d1.items():
+    print ("Process with ",i," priority has ",weight," waiting time")
+    d2 = d2 + weight
+    weight = weight + j
+   
+print("Average waiting time: ",d2/n)
+for i in d1.values():
+     tw = tw + i
+
+print("Average turn around time: ",(d2+tw)/n)
+
+

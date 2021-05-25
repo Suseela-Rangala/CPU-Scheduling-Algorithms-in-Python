@@ -1,0 +1,45 @@
+//rr
+n = int (input("Enter no.of processess:"))
+q = int (input("Enter time quantum:"))
+p = []
+w = []
+tw = 0
+d2 = d3 = dict()  
+for i in range(n):
+    y = int (input("Enter process:"))
+    p.append(y)
+    j = int (input("Enter weight:"))
+    w.append(j)
+    tw = tw + j
+    d2[y] = 0
+d1 = dict(zip(p,w))
+d3 = dict(zip(p,w))
+t = s = 0
+#print(d1,d2,d3)
+print("Waiting time:")
+while(tw != 0):
+   for i in d1.keys():
+      if(d1[i] >= q):
+         tw = tw - q
+         d1[i] = d1[i] - q
+         t = t + q
+         if(d1[i] == 0):
+             d2[i] = t
+      elif(d1[i] < q and d1[i] > 0):
+         tw = tw - d1[i]
+         t = t + d1[i] 
+         d1[i] = 0
+         d2[i] = t
+t = 0
+for i in d2.keys():
+    d2[i] = d2[i] - d3[i]
+    t = t + d2[i]
+print(d2)
+
+
+print("Average waiting time: ",t/n)
+
+for i in d3.values():
+     tw = tw + i
+print("Average turn around time: ",(t+tw)/n)
+
